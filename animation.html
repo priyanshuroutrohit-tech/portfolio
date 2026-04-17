@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>3D Ring Animation</title>
+
+<style>
+body {
+  margin: 0;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  transform-style: preserve-3d;
+  transform: rotateX(65deg);
+}
+
+.circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(20px * var(--i));
+  height: calc(20px * var(--i));
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid;
+  
+  /* Neon Gradient */
+  border-image: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet) 1;
+
+  /* Glow effect */
+  box-shadow: 0 0 10px rgba(255,255,255,0.5),
+              0 0 20px rgba(255,255,255,0.3);
+
+  animation: wave 3s linear infinite;
+  animation-delay: calc(var(--i) * 0.1s);
+}
+
+@keyframes wave {
+  0% {
+    transform: translate(-50%, -50%) translateZ(-100px);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translate(-50%, -50%) translateZ(100px);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) translateZ(-100px);
+    opacity: 0.2;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="circle" style="--i:1;"></div>
+  <div class="circle" style="--i:2;"></div>
+  <div class="circle" style="--i:3;"></div>
+  <div class="circle" style="--i:4;"></div>
+  <div class="circle" style="--i:5;"></div>
+  <div class="circle" style="--i:6;"></div>
+  <div class="circle" style="--i:7;"></div>
+  <div class="circle" style="--i:8;"></div>
+  <div class="circle" style="--i:9;"></div>
+  <div class="circle" style="--i:10;"></div>
+  <div class="circle" style="--i:11;"></div>
+  <div class="circle" style="--i:12;"></div>
+  <div class="circle" style="--i:13;"></div>
+  <div class="circle" style="--i:14;"></div>
+  <div class="circle" style="--i:15;"></div>
+  <div class="circle" style="--i:16;"></div>
+  <div class="circle" style="--i:17;"></div>
+  <div class="circle" style="--i:18;"></div>
+  <div class="circle" style="--i:19;"></div>
+  <div class="circle" style="--i:20;"></div>
+</div>
+
+</body>
+</html>

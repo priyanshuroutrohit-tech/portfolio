@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Priyanshu Rout | CV</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --primary:#00ffd5;
+  --bg:#0b0f14;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+  background:var(--bg);
+  color:#fff;
+}
+
+/* ===== PAGE ===== */
+.page{
+  width:210mm;        /* A4 width */
+  min-height:297mm;   /* A4 height */
+  margin:auto;
+  padding:25mm;
+  background:#0b0f14;
+  position:relative;
+}
+
+/* ===== DOWNLOAD ===== */
+.download{
+  position:absolute;
+  top:15px;
+  right:20px;
+}
+
+.download button{
+  padding:8px 16px;
+  border:none;
+  border-radius:6px;
+  background:var(--primary);
+  color:#000;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* ===== HEADER ===== */
+.header{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-bottom:14px;
+}
+
+.header img{
+  width:75px;
+  height:75px;
+  border-radius:50%;
+  border:2px solid var(--primary);
+}
+
+h1{
+  font-size:26px;
+  color:var(--primary);
+}
+
+.role{
+  font-size:14px;
+}
+
+.contact{
+  font-size:12px;
+  margin-top:4px;
+}
+
+/* ===== SECTIONS ===== */
+.section{
+  margin-top:14px;
+}
+
+.section h2{
+  font-size:15px;
+  color:var(--primary);
+  margin-bottom:6px;
+}
+
+.section p, li{
+  font-size:12.5px;
+  line-height:1.4;
+}
+
+ul{
+  padding-left:16px;
+}
+
+/* ===== SKILLS (COMPACT 2 COLUMN) ===== */
+.skills{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px 20px;   /* 👈 skills nearer to each other */
+}
+
+.skill{
+  font-size:12.5px;
+}
+
+.bar{
+  height:5px;
+  background:#333;
+  border-radius:6px;
+  overflow:hidden;
+  margin-top:3px;
+}
+
+.bar div{
+  height:100%;
+  background:var(--primary);
+}
+
+/* ===== PRINT ===== */
+@media print{
+  body{background:#fff;}
+  .page{background:#fff; color:#000;}
+  .download{display:none;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <div class="download">
+    <button onclick="window.print()">Download CV (PDF)</button>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <img src="rohit.jpg" alt="Photo">
+    <div>
+      <h1>Priyanshu Rout</h1>
+      <div class="role">Web Application Developer</div>
+      <div class="contact">
+        Bhubaneswar | 8144933406 | priyanshuroutrohit@gmail.com
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFILE -->
+  <div class="section">
+    <h2>Profile</h2>
+    <p>
+      Detail-oriented Web Application Developer skilled in HTML, CSS, and JavaScript,
+      focused on building clean, responsive, and user-friendly web applications.
+    </p>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section">
+    <h2>Skills</h2>
+    <div class="skills">
+
+      <div class="skill">HTML
+        <div class="bar"><div style="width:90%"></div></div>
+      </div>
+
+      <div class="skill">CSS
+        <div class="bar"><div style="width:90%"></div></div>
+      </div>
+
+      <div class="skill">JavaScript
+        <div class="bar"><div style="width:75%"></div></div>
+      </div>
+
+      <div class="skill">C Programming
+        <div class="bar"><div style="width:65%"></div></div>
+      </div>
+
+       <div class="skill">Python
+        <div class="bar"><div style="width:85%"></div></div>
+      </div>
+
+       <div class="skill">My SQL
+        <div class="bar"><div style="width:95%"></div></div>
+      </div>
+
+       <div class="skill">Data Structure
+        <div class="bar"><div style="width:75%"></div></div>
+      </div>
+
+       <div class="skill">Operating System
+        <div class="bar"><div style="width:80%"></div></div>
+      </div>
+
+       <div class="skill">UI/UX
+        <div class="bar"><div style="width:76%"></div></div>
+      </div>
+
+       <div class="skill">React
+        <div class="bar"><div style="width:78%"></div></div>
+      </div>
+
+      <div class="skill">VS Code
+        <div class="bar"><div style="width:88%"></div></div>
+      </div>
+
+      <div class="skill">Sublime Text
+        <div class="bar"><div style="width:80%"></div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="section">
+    <h2>Experience</h2>
+    <p><strong>Web Application Developer – LIT</strong> (Sep 2025 – Present)</p>
+    <ul>
+      <li>Developed interactive web applications</li>
+      <li>Worked with designers on UI</li>
+      <li>Improved usability and features</li>
+    </ul>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section">
+    <h2>Education</h2>
+    <p>School Name: SCHOOL OF INTREGRAL EDUCATION </p>
+      <p>+2 Higher School Name: NAVAJYOTI HIGHER SECONDARY EDUCATION</p>
+    <p>B.Sc ITM – Currently Enrolled in-Lakhsya institute of technology</p>
+  </div>
+
+  <!-- ACHIEVEMENT -->
+  <div class="section">
+    <h2>Achievement</h2>
+    <p>1st Place – College Hackathon 2025 (Frontend Lead and UI )</p>
+  </div>
+
+</div>
+
+</body>
+</html>

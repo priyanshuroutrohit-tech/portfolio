@@ -1,0 +1,152 @@
+
+<style>
+  .scene {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+    gap: 2rem;
+  }
+  .torus-wrap {
+    width: 220px;
+    height: 220px;
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 600px;
+  }
+  .ring-group {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: spinY 4s linear infinite;
+  }
+  @keyframes spinY {
+    from { transform: rotateX(60deg) rotateZ(0deg); }
+    to   { transform: rotateX(60deg) rotateZ(360deg); }
+  }
+  .circle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    border: 2.5px solid transparent;
+    box-sizing: border-box;
+    transform-origin: center center;
+  }
+  .code-block {
+    background: #1a1b2e;
+    border-radius: 10px;
+    padding: 1.2rem 1.5rem;
+    width: 100%;
+    max-width: 520px;
+    font-family: var(--font-mono, monospace);
+    font-size: 12px;
+    line-height: 1.7;
+    color: #c9d1d9;
+    overflow-x: auto;
+  }
+  .kw  { color: #ff7b72; }
+  .prop{ color: #79c0ff; }
+  .val { color: #a5d6ff; }
+  .sel { color: #ffa657; }
+  .cmt { color: #6e7681; }
+  .controls {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .ctrl-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--color-text-secondary);
+  }
+</style>
+
+<div class="scene">
+  <div class="torus-wrap">
+    <div class="ring-group" id="ringGroup"></div>
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-group">
+      <label>Rings: <strong id="ringCount">20</strong></label>
+      <input type="range" min="6" max="36" value="20" step="1" id="sliderRings" style="width:120px">
+    </div>
+    <div class="ctrl-group">
+      <label>Speed: <strong id="speedVal">4s</strong></label>
+      <input type="range" min="1" max="10" value="4" step="1" id="sliderSpeed" style="width:120px">
+    </div>
+    <div class="ctrl-group">
+      <label>Tilt: <strong id="tiltVal">60°</strong></label>
+      <input type="range" min="0" max="85" value="60" step="5" id="sliderTilt" style="width:120px">
+    </div>
+  </div>
+
+  
+
+<script>
+  const group = document.getElementById('ringGroup');
+  const sliderRings = document.getElementById('sliderRings');
+  const sliderSpeed = document.getElementById('sliderSpeed');
+  const sliderTilt  = document.getElementById('sliderTilt');
+
+  function buildRings(count) {
+    group.innerHTML = '';
+    const outerR = 80, innerR = 28;
+    for (let i = 0; i < count; i++) {
+      const angle = (i / count) * 360;
+      const hue = Math.round((i / count) * 360);
+      const div = document.createElement('div');
+      div.className = 'circle';
+      const w = outerR * 2, h = innerR * 2;
+      div.style.cssText = `
+        width:${w}px; height:${h}px;
+        margin-left:${-w/2}px; margin-top:${-h/2}px;
+        left:50%; top:50%;
+        border-color:hsl(${hue},85%,62%);
+        transform:translate(-50%,-50%) rotateY(${angle}deg);
+      `;
+      group.appendChild(div);
+    }
+  }
+
+  function applyTilt(deg) {
+    group.style.animation = 'none';
+    group.style.transform = `rotateX(${deg}deg) rotateZ(0deg)`;
+    setTimeout(() => {
+      group.style.animation = '';
+    }, 20);
+    const sheet = document.styleSheets[0];
+    for (let i = 0; i < sheet.cssRules.length; i++) {
+      const r = sheet.cssRules[i];
+      if (r.name === 'spinY') {
+        r.cssRules[0].style.transform = `rotateX(${deg}deg) rotateZ(0deg)`;
+        r.cssRules[1].style.transform = `rotateX(${deg}deg) rotateZ(360deg)`;
+      }
+    }
+  }
+
+  buildRings(20);
+
+  sliderRings.addEventListener('input', () => {
+    document.getElementById('ringCount').textContent = sliderRings.value;
+    buildRings(parseInt(sliderRings.value));
+  });
+
+  sliderSpeed.addEventListener('input', () => {
+    const s = sliderSpeed.value;
+    document.getElementById('speedVal').textContent = s + 's';
+    group.style.animationDuration = s + 's';
+  });
+
+  sliderTilt.addEventListener('input', () => {
+    const deg = sliderTilt.value;
+    document.getElementById('tiltVal').textContent = deg + '°';
+    applyTilt(deg);
+  });
+</script>
